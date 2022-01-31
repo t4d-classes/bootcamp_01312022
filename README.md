@@ -10,13 +10,7 @@ We do this by designing and delivering learning programs customized to your tech
 
 We shorten the learning curve so your software developers can contribute more quickly to mission-critical endeavors.
 
-## Class Information Page
-
-[https://www.t4d.io/developintelligence-front-end-boot-camp-01312022](https://www.t4d.io/developintelligence-front-end-boot-camp-01312022)
-
-## Other Resources
-
-The instructor will distribute additional private links during class for downloading courseware, and downloading recordings...
+## License
 
 All code in this repository is distributed under the [MIT license](license.txt).
 
