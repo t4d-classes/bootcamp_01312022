@@ -6,12 +6,12 @@ export const Layout = () => {
 
   return (
 
-    <div>
-      <header>
+    <div className="container">
+      <header id="page-header">
         <h1>Tool Apps</h1>
       </header>
 
-      <nav>
+      <nav id="main-menu">
         <ul>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/color-tool">Color Tool</Link></li>
@@ -19,15 +19,15 @@ export const Layout = () => {
         </ul>
       </nav>
 
-      <main>
+      <main id="content">
         <Outlet />
       </main>
 
-      <aside>
+      <aside id="sidebar">
         sidebar
       </aside>
 
-      <footer>
+      <footer id="page-footer">
         <small>&copy; 2022 A Cool Company, Inc.</small>
       </footer>
     </div>
