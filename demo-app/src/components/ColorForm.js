@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const ColorForm = () => {
+export const ColorForm = (props) => {
 
   const [ colorForm, setColorForm ] = useState({
     name: '', hexcode: '',
@@ -14,11 +14,22 @@ export const ColorForm = () => {
       ...colorForm, // copy the properties from the original colorForm into the new one
       // computed property
       [ e.target.name ]: e.target.value
-    })
+    });
 
   };
 
-  console.log(colorForm);
+  const submitColor = () => {
+
+    // invoked the addColor function passing it the colorForm
+    props.onSubmitColor({ ...colorForm });
+
+    // sets the form back to blank
+    setColorForm({
+      name: '', hexcode: '',
+    });
+
+  };
+
 
   return (
     <form>
@@ -33,7 +44,7 @@ export const ColorForm = () => {
         <input type="text" name="hexcode" value={colorForm.hexcode} onChange={change} />
       </label>
 
-      <button type="button">Add Color</button>
+      <button type="button" onClick={submitColor}>{props.buttonText}</button>
 
     </form>
   );
