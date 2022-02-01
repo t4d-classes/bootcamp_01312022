@@ -24,7 +24,7 @@ export const CarTool = () => {
           </tr>
         </thead>
         <tbody>
-          {cars.map(car => <tr>
+          {cars.map(car => <tr key={car.id}>
             <td>{car.id}</td>
             <td>{car.make}</td>
             <td>{car.model}</td>

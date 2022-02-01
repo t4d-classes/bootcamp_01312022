@@ -1,15 +1,5 @@
 
-export const ColorTool = () => {
-
-  const colors = [
-    { id: 1, name: 'red', hexcode: 'ff0000' }, // object literal
-    { id: 2, name: 'green', hexcode: '00ff00' },
-    { id: 3, name: 'blue', hexcode: '0000ff' },
-  ]; // array literal
-
-
-  // const colorListItems = colors.map(c =>
-  //   <li key={c.id}>{c.name} {c.hexcode}</li>)
+export const ColorTool = (props) => {
 
   return (
     <>
@@ -17,8 +7,8 @@ export const ColorTool = () => {
         <h2>Color Tool</h2>
       </header>
       <ul>
-        {colors.map(c =>
-          <li key={c.id}>{c.name} {c.hexcode}</li>)}
+        {props.colors.map(color =>
+          <li key={color.id}>{color.name} {color.hexcode}</li>)}
       </ul>
     </>
   );
