@@ -21,7 +21,9 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="color-tool" element={<ColorTool colors={colorList} />} />
+        <Route path="color-tool" element={<>
+          <ColorTool colors={colorList} />
+        </>} />
         <Route path="car-tool" element={<CarTool />} />
       </Route>
     </Routes>
