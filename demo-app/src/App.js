@@ -12,6 +12,12 @@ const colorList = [
   { id: 3, name: 'blue', hexcode: '0000ff' },
 ]; // array literal
 
+const carList = [
+  { id: 1, make: 'Ford', model: 'Fusion Hybrid', year: 2019, color: 'red', price: 45000},
+  { id: 2, make: 'Tesla', model: 'S', year: 2020, color: 'blue', price: 120000},
+]
+
+
 // React.createElement(ColorTool, { colors: colorList });
 // <ColorTool colors={colorList} />
 
@@ -24,7 +30,7 @@ export const App = () => {
         <Route path="color-tool" element={<>
           <ColorTool colors={colorList} />
         </>} />
-        <Route path="car-tool" element={<CarTool />} />
+        <Route path="car-tool" element={<CarTool cars={carList} />} />
       </Route>
     </Routes>
   );

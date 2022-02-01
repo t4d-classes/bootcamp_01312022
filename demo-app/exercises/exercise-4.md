@@ -2,7 +2,7 @@
 
 ## Steps
 
-1. Create a new component named Tool Header. Move the "header" section of Car Tool to the new component. Configure the component so the text inside the `H1` can be configured via props.
+1. Create a new component named Tool Header. Move the "header" section of Car Tool to the new component. Configure the component so the text inside the `H2` can be configured via props.
 
 2. Utilize the new Tool Header component in Car Tool and Color Tool.
 
