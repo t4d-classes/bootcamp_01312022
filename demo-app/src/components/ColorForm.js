@@ -1,10 +1,12 @@
 import { useState } from 'react';
 
+const getInitialColorForm = () => ({
+  name: '', hexcode: '',
+});
+
 export const ColorForm = (props) => {
 
-  const [ colorForm, setColorForm ] = useState({
-    name: '', hexcode: '',
-  } /* initial value of the state */);
+  const [ colorForm, setColorForm ] = useState(getInitialColorForm() /* initial value of the state */);
 
   const change = e => {
 
@@ -24,9 +26,7 @@ export const ColorForm = (props) => {
     props.onSubmitColor({ ...colorForm });
 
     // sets the form back to blank
-    setColorForm({
-      name: '', hexcode: '',
-    });
+    setColorForm(getInitialColorForm());
 
   };
 
