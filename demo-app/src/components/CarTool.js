@@ -42,6 +42,12 @@ export const CarTool = (props) => {
 
   };
 
+  const deleteCar = carId => {
+    setCars(cars.filter(c => c.id !== carId));
+  };
+
+
+
   const doSortCars = (column) => {
 
     if (column !== carsSort.column) {
@@ -70,7 +76,8 @@ export const CarTool = (props) => {
     <>
       <ToolHeader headerText="Car Tool" />
       <CarTable cars={sortCars(cars, carsSort)}
-        carsSort={carsSort} onSortCars={doSortCars} />
+        carsSort={carsSort}
+        onDeleteCar={deleteCar} onSortCars={doSortCars} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
     </>
   );
