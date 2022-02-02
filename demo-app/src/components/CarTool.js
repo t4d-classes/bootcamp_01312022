@@ -30,6 +30,8 @@ export const CarTool = (props) => {
     direction: 'asc',
   });
 
+  const [ editCarId, setEditCarId ] = useState(-1);
+
   const addCar = car => {
 
     setCars([
@@ -42,11 +44,13 @@ export const CarTool = (props) => {
 
   };
 
+  const editCar = carId => {
+    setEditCarId(carId);
+  };
+
   const deleteCar = carId => {
     setCars(cars.filter(c => c.id !== carId));
   };
-
-
 
   const doSortCars = (column) => {
 
@@ -75,9 +79,10 @@ export const CarTool = (props) => {
   return (
     <>
       <ToolHeader headerText="Car Tool" />
-      <CarTable cars={sortCars(cars, carsSort)}
+      <CarTable cars={sortCars(cars, carsSort)} editCarId={editCarId}
         carsSort={carsSort}
-        onDeleteCar={deleteCar} onSortCars={doSortCars} />
+        onEditCar={editCar} onDeleteCar={deleteCar}
+        onSortCars={doSortCars} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
     </>
   );

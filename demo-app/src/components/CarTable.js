@@ -1,39 +1,68 @@
 import PropTypes from 'prop-types';
+import { useRef, useMemo } from 'react';
 
 import { carsPropType } from '../propTypes/car';
 import { SortColHeader } from './SortColHeader';
 import { CarViewRow } from './CarViewRow';
+import { CarEditRow } from './CarEditRow';
 
-const cols = [
+const getCols = (idSuffix) => ([
   { field: 'id', label: 'Id' },
-  { field: 'make', label: 'Make' },
-  { field: 'model', label: 'Model' },
-  { field: 'year', label: 'Year' },
-  { field: 'color', label: 'Color' },
-  { field: 'price', label: 'Price' },
-]
+  { field: 'make', label: 'Make', editControlId: `edit-make-input-${idSuffix}` },
+  { field: 'model', label: 'Model', editControlId: `edit-model-input-${idSuffix}` },
+  { field: 'year', label: 'Year', editControlId: `edit-year-input-${idSuffix}` },
+  { field: 'color', label: 'Color', editControlId: `edit-color-input-${idSuffix}` },
+  { field: 'price', label: 'Price', editControlId: `edit-price-input-${idSuffix}` },
+]);
+
 
 export const CarTable = ({
-  cars, carsSort,
+  cars, editCarId, carsSort,
   onSortCars: sortCars,
+  onEditCar: editCar,
   onDeleteCar: deleteCar,
 }) => {
 
+  // will work 100%
+  // the initial value, will the value we use on each render
+  const htmlElementIdSuffix = useRef(Math.floor(Math.random() * 100000));
+
+  const idSuffix = htmlElementIdSuffix.current;
+
+  const cols = useMemo(
+    () => getCols(idSuffix),
+    [idSuffix],
+  );
+
+  // this looks awesome but could recompute changing the random value
+  // const cols = useMemo(
+  //   () => getCols(Math.floor(Math.random() * 100000)),
+  //   [], // empty array means run on first render only
+  // );
+
+  // always generate a new id suffix which is not good
+  // const cols = getCols(Math.floor(Math.random() * 100000));
+
   return (
-    <table>
-      <thead>
-        <tr>
-          {cols.map( (col, i) => <SortColHeader key={i} col={col}
-            sortInfo={carsSort} onSort={sortCars} />)}
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {cars.map(car =>
-          <CarViewRow key={car.id} car={car}
-            onDeleteCar={deleteCar} />)}
-      </tbody>
-    </table>
+    <form>
+      <table>
+        <thead>
+          <tr>
+            {cols.map( (col, i) => <SortColHeader
+              key={i} col={col} editMode={editCarId > 0}
+              sortInfo={carsSort} onSort={sortCars} />)}
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cars.map(car =>
+            car.id === editCarId
+              ? <CarEditRow key={car.id} car={car} cols={cols} />
+              : <CarViewRow key={car.id} car={car}
+                  onEditCar={editCar} onDeleteCar={deleteCar} />)}
+        </tbody>
+      </table>
+    </form>
   );
 
 }

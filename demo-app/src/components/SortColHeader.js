@@ -6,14 +6,26 @@ const showSortDir = (sortInfo, colName) => {
   }
 };
 
-export const SortColHeader = ({ col, sortInfo, onSort }) => {
+export const SortColHeader = ({
+  col,
+  sortInfo,
+  editMode,
+  onSort: sort }) => {
+
+  const colLabel = editMode
+    ? <label htmlFor={col.editControlId}>{col.label}</label>
+    : col.label;
 
   return (
     <th>
-      <button onClick={() => onSort(col.field)}>
-        {col.label} {showSortDir(sortInfo, col.field)}
+      <button onClick={() => sort(col.field)}>
+        {colLabel} {showSortDir(sortInfo, col.field)}
       </button>
     </th>
   );
 
+};
+
+SortColHeader.defaultProps = {
+  editMode: false,
 };

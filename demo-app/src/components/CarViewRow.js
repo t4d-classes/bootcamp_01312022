@@ -3,6 +3,7 @@ import { carPropType } from '../propTypes/car';
 
 export const CarViewRow = ({
   car,
+  onEditCar: editCar,
   onDeleteCar: deleteCar,
 }) => {
 
@@ -16,6 +17,9 @@ export const CarViewRow = ({
       <td>{car.price}</td>
       <td>
         <button type="button"
+          onClick={() => editCar(car.id)}>
+            Edit</button>
+        <button type="button"
           onClick={() => deleteCar(car.id)}>
             Delete</button>
       </td>
@@ -27,5 +31,6 @@ export const CarViewRow = ({
 
 CarViewRow.propTypes = {
   car: carPropType.isRequired,
+  onEditCar: PropTypes.func.isRequired,
   onDeleteCar: PropTypes.func.isRequired,
 };
