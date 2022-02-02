@@ -1,30 +1,30 @@
 
+import { SortColHeader } from './SortColHeader';
 import { CarViewRow } from './CarViewRow';
 
-export const CarTable = props => {
+const cols = [
+  { field: 'id', label: 'Id' },
+  { field: 'make', label: 'Make' },
+  { field: 'model', label: 'Model' },
+  { field: 'year', label: 'Year' },
+  { field: 'color', label: 'Color' },
+  { field: 'price', label: 'Price' },
+]
 
-  const showSortDir = (colName) => {
-    if (props.carsSort.column === colName) {
-      return "(" + props.carsSort.direction + ")";
-    }
-  }
+export const CarTable = ({
+  cars, carsSort, onSortCars
+}) => {
 
   return (
     <table>
       <thead>
         <tr>
-          <th><button onClick={() => props.onSortCars('id')}>
-            Id {showSortDir('id')}
-          </button></th>
-          <th><button onClick={() => props.onSortCars('make')}>Make {showSortDir('make')}</button></th>
-          <th><button onClick={() => props.onSortCars('model')}>Model {showSortDir('model')}</button></th>
-          <th><button onClick={() => props.onSortCars('year')}>Year {showSortDir('year')}</button></th>
-          <th><button onClick={() => props.onSortCars('color')}>Color {showSortDir('color')}</button></th>
-          <th><button onClick={() => props.onSortCars('price')}>Price {showSortDir('price')}</button></th>
+          {cols.map(col => <SortColHeader col={col}
+            sortInfo={carsSort} onSort={onSortCars} />)}
         </tr>
       </thead>
       <tbody>
-        {props.cars.map(car =>
+        {cars.map(car =>
           <CarViewRow key={car.id} car={car} />)}
       </tbody>
     </table>

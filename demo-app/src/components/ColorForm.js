@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import "./ColorForm.css";
+
 const getInitialColorForm = () => ({
   name: '', hexcode: '',
 });

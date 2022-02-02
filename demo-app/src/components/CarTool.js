@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
+import { CarForm } from './CarForm';
 
 
 const sortCars = (cars, carsSort) => {
@@ -22,10 +23,24 @@ const sortCars = (cars, carsSort) => {
 
 export const CarTool = (props) => {
 
+  const [ cars, setCars ] = useState([...props.cars]);
+
   const [ carsSort, setCarsSort ] = useState({
     column: 'id',
     direction: 'asc'
   });
+
+  const addCar = car => {
+
+    setCars([
+      ...cars,
+      {
+        ...car,
+        id: Math.max(...cars.map(c => c.id), 0) + 1,
+      }
+    ]);
+
+  };
 
   const doSortCars = (column) => {
 
@@ -50,8 +65,9 @@ export const CarTool = (props) => {
   return (
     <>
       <ToolHeader headerText="Car Tool" />
-      <CarTable cars={sortCars(props.cars, carsSort)}
+      <CarTable cars={sortCars(cars, carsSort)}
         carsSort={carsSort} onSortCars={doSortCars} />
+      <CarForm buttonText="Add Car" onSubmitCar={addCar} />
     </>
   );
 
