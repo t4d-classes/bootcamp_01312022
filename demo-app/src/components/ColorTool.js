@@ -18,7 +18,12 @@ export const ColorTool = (props) => {
       },
     ]);
 
+    console.log(colors);
+
   };
+
+  console.log(colors);
+
 
   return (
     <>

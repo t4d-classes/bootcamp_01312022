@@ -27,7 +27,7 @@ export const CarTool = (props) => {
 
   const [ carsSort, setCarsSort ] = useState({
     column: 'id',
-    direction: 'asc'
+    direction: 'asc',
   });
 
   const addCar = car => {
@@ -46,16 +46,20 @@ export const CarTool = (props) => {
 
     if (column !== carsSort.column) {
       setCarsSort({
-        column, direction: 'asc', 
+        ...carsSort,
+        column,
+        direction: 'asc', 
       });
     } else {
       if (carsSort.direction === 'asc') {
         setCarsSort({
-          column, direction: 'desc', 
+          ...carsSort,
+          direction: 'desc', 
         });
       } else {
         setCarsSort({
-          column, direction: 'asc', 
+          ...carsSort,
+          direction: 'asc', 
         });
       }
     }
