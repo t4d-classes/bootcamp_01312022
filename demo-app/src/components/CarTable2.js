@@ -23,13 +23,33 @@ export const CarTable = ({
   onDeleteCar: deleteCar,
 }) => {
 
+  // will work 100%
+  // the initial value, will the value we use on each render
+  const htmlElementIdSuffix = useRef(Math.floor(Math.random() * 100000));
+
+  const idSuffix = htmlElementIdSuffix.current;
+
+  const cols = useMemo(
+    () => getCols(idSuffix),
+    [idSuffix],
+  );
+
+  // this looks awesome but could recompute changing the random value
+  // const cols = useMemo(
+  //   () => getCols(Math.floor(Math.random() * 100000)),
+  //   [], // empty array means run on first render only
+  // );
+
+  // always generate a new id suffix which is not good
+  // const cols = getCols(Math.floor(Math.random() * 100000));
+
   return (
     <form>
       <table>
         <thead>
           <tr>
-            {getCols().map( (col, i) => <SortColHeader
-              key={i} col={col}
+            {cols.map( (col, i) => <SortColHeader
+              key={i} col={col} editMode={editCarId > 0}
               sortInfo={carsSort} onSort={sortCars} />)}
             <th>Actions</th>
           </tr>
@@ -37,7 +57,7 @@ export const CarTable = ({
         <tbody>
           {cars.map(car =>
             car.id === editCarId
-              ? <CarEditRow key={car.id} car={car} />
+              ? <CarEditRow key={car.id} car={car} cols={cols} />
               : <CarViewRow key={car.id} car={car}
                   onEditCar={editCar} onDeleteCar={deleteCar} />)}
         </tbody>
