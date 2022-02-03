@@ -12,7 +12,7 @@ export const SortColHeader = ({
   editMode,
   onSort: sort }) => {
 
-  const colLabel = editMode
+  const colLabel = (editMode && col.editControlId)
     ? <label htmlFor={col.editControlId}>{col.label}</label>
     : col.label;
 

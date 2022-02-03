@@ -3,29 +3,21 @@ import { useState } from 'react';
 
 import { carPropType } from '../propTypes/car';
 
+import { useForm } from '../hooks/useForm';
+
 export const CarEditRow = ({
   car,
   onCancelCar: cancelCar,
   onSaveCar,
 }) => {
 
-  const [ carForm, setCarForm ] = useState({
+  const [ carForm, change ] = useForm({
     make: car.make,
     model: car.model,
     year: car.year,
     color: car.color,
     price: car.price,
   });
-
-  const change = e => {
-
-    setCarForm({
-      ...carForm,
-      [ e.target.name ]: e.target.type === 'number'
-        ? parseInt(e.target.value, 10) : e.target.value
-    });
-
-  };
 
   const saveCar = () => {
     onSaveCar({
