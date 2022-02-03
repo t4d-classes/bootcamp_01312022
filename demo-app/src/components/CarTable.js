@@ -21,6 +21,8 @@ export const CarTable = ({
   onSortCars: sortCars,
   onEditCar: editCar,
   onDeleteCar: deleteCar,
+  onSaveCar: saveCar,
+  onCancelCar: cancelCar,
 }) => {
 
   return (
@@ -37,7 +39,8 @@ export const CarTable = ({
         <tbody>
           {cars.map(car =>
             car.id === editCarId
-              ? <CarEditRow key={car.id} car={car} />
+              ? <CarEditRow key={car.id} car={car}
+                  onSaveCar={saveCar} onCancelCar={cancelCar} />
               : <CarViewRow key={car.id} car={car}
                   onEditCar={editCar} onDeleteCar={deleteCar} />)}
         </tbody>

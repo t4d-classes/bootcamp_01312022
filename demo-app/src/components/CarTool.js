@@ -33,7 +33,6 @@ export const CarTool = (props) => {
   const [ editCarId, setEditCarId ] = useState(-1);
 
   const addCar = car => {
-
     setCars([
       ...cars,
       {
@@ -41,16 +40,30 @@ export const CarTool = (props) => {
         id: Math.max(...cars.map(c => c.id), 0) + 1,
       }
     ]);
+    setEditCarId(-1);
+  };
 
+  const saveCar = car => {
+    const newCars = [...cars];
+    const carIndex = newCars.findIndex(c => c.id === car.id);
+    newCars[carIndex] = car;
+    setCars(newCars);
+    setEditCarId(-1);
+  };
+
+  const deleteCar = carId => {
+    setCars(cars.filter(c => c.id !== carId));
+    setEditCarId(-1);
   };
 
   const editCar = carId => {
     setEditCarId(carId);
   };
 
-  const deleteCar = carId => {
-    setCars(cars.filter(c => c.id !== carId));
-  };
+  const cancelCar = () => {
+    setEditCarId(-1);
+  };  
+
 
   const doSortCars = (column) => {
 
@@ -82,6 +95,7 @@ export const CarTool = (props) => {
       <CarTable cars={sortCars(cars, carsSort)} editCarId={editCarId}
         carsSort={carsSort}
         onEditCar={editCar} onDeleteCar={deleteCar}
+        onSaveCar={saveCar} onCancelCar={cancelCar}
         onSortCars={doSortCars} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
     </>

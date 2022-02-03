@@ -4,6 +4,8 @@ import { carPropType } from '../propTypes/car';
 
 export const CarEditRow = ({
   car,
+  onCancelCar: cancelCar,
+  onSaveCar,
 }) => {
 
   const [ carForm, setCarForm ] = useState({
@@ -24,6 +26,13 @@ export const CarEditRow = ({
 
   };
 
+  const saveCar = () => {
+    onSaveCar({
+      ...carForm,
+      id: car.id,
+    });
+  }
+
 
   return (
     <tr>
@@ -39,8 +48,8 @@ export const CarEditRow = ({
       <td><input type="number" name="price"
         value={carForm.price} onChange={change} /></td>
       <td>
-        <button type="button">Save</button>
-        <button type="button">Cancel</button>
+        <button type="button" onClick={saveCar}>Save</button>
+        <button type="button" onClick={cancelCar}>Cancel</button>
       </td>
     </tr>    
   );
