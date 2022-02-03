@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 
 import { useList } from '../hooks/useList';
 
 const sortTheCars = (cars, carsSort) => {
+
+  console.log('sorting the cars');
 
   return [ ...cars ].sort((a,b) => {
 
@@ -29,31 +31,31 @@ export const useCarToolStore = (initialCars) => {
 
   const [ editCarId, setEditCarId ] = useState(-1);
 
-  const addCar = car => {
+  const addCar = useCallback(car => {
     appendCar(car);
     setEditCarId(-1);
-  };
+  }, [appendCar]);
 
-  const saveCar = car => {
+  const saveCar = useCallback(car => {
     replaceCar(car);
     setEditCarId(-1);
-  };
+  }, [replaceCar]);
 
-  const deleteCar = carId => {
+  const deleteCar = useCallback(carId => {
     removeCar(carId);
     setEditCarId(-1);
-  };
+  }, [removeCar]);
 
-  const editCar = carId => {
+  const editCar = useCallback(carId => {
     setEditCarId(carId);
-  };
+  }, []);
 
-  const cancelCar = () => {
+  const cancelCar = useCallback(() => {
     setEditCarId(-1);
-  };  
+  }, []);  
 
 
-  const sortCars = (column) => {
+  const sortCars = useCallback((column) => {
 
     if (column !== carsSort.column) {
       setCarsSort({
@@ -75,10 +77,10 @@ export const useCarToolStore = (initialCars) => {
       }
     }
 
-  };
+  }, [carsSort]);
 
   return {
-    cars: sortTheCars(cars, carsSort),
+    cars: useMemo(() => sortTheCars(cars, carsSort), [cars, carsSort]),
     carsSort,
     editCarId,
     addCar,

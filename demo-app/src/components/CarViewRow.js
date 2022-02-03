@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
+import { memo } from 'react';
+
 import { carPropType } from '../propTypes/car';
 
-export const CarViewRow = ({
+export const CarViewRow = memo(({
   car,
   onEditCar: editCar,
   onDeleteCar: deleteCar,
@@ -27,7 +29,7 @@ export const CarViewRow = ({
   );
 
 
-};
+});
 
 CarViewRow.propTypes = {
   car: carPropType.isRequired,
