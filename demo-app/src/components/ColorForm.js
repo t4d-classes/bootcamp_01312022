@@ -1,57 +1,37 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+
+import { useForm } from '../hooks/useForm';
 
 import "./ColorForm.css";
 
-const getInitialColorForm = () => ({
-  name: '', hexcode: '',
-});
-
 export const ColorForm = (props) => {
 
-  const [ colorForm, setColorForm ] = useState(getInitialColorForm() /* initial value of the state */);
-
-  const change = e => {
-
-    setColorForm({
-      // name: colorForm.name,
-      // hexcode: colorForm.hexcode,
-      ...colorForm, // copy the properties from the original colorForm into the new one
-      // computed property
-      [ e.target.name ]: e.target.value
-    });
-
-  };
+  const [ colorForm, change, resetCarForm ] = useForm({
+    name: '', hexcode: '',
+  });
 
   const submitColor = () => {
-
-    // invoked the addColor function passing it the colorForm
     props.onSubmitColor({ ...colorForm });
-
-    // sets the form back to blank
-    setColorForm(getInitialColorForm());
-
+    resetCarForm();
   };
-
 
   return (
     <form>
-
       <label>
         Name:
-        <input type="text" name="name" value={colorForm.name} onChange={change} />
+        <input type="text" name="name"
+          value={colorForm.name} onChange={change} />
       </label>
-
       <label>
         Hexcode:
-        <input type="text" name="hexcode" value={colorForm.hexcode} onChange={change} />
+        <input type="text" name="hexcode"
+          value={colorForm.hexcode} onChange={change} />
       </label>
-
-      <button type="button" onClick={submitColor}>{props.buttonText}</button>
-
+      <button type="button" onClick={submitColor}>
+        {props.buttonText}
+      </button>
     </form>
   );
-
 
 };
 

@@ -8,11 +8,16 @@ import { CarEditRow } from './CarEditRow';
 
 const getCols = (idSuffix) => ([
   { field: 'id', label: 'Id' },
-  { field: 'make', label: 'Make', editControlId: `edit-make-input-${idSuffix}` },
-  { field: 'model', label: 'Model', editControlId: `edit-model-input-${idSuffix}` },
-  { field: 'year', label: 'Year', editControlId: `edit-year-input-${idSuffix}` },
-  { field: 'color', label: 'Color', editControlId: `edit-color-input-${idSuffix}` },
-  { field: 'price', label: 'Price', editControlId: `edit-price-input-${idSuffix}` },
+  { field: 'make', label: 'Make',
+    editControlId: `edit-make-input-${idSuffix}` },
+  { field: 'model', label: 'Model',
+    editControlId: `edit-model-input-${idSuffix}` },
+  { field: 'year', label: 'Year',
+    editControlId: `edit-year-input-${idSuffix}` },
+  { field: 'color', label: 'Color',
+    editControlId: `edit-color-input-${idSuffix}` },
+  { field: 'price', label: 'Price',
+    editControlId: `edit-price-input-${idSuffix}` },
 ]);
 
 

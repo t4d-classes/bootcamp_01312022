@@ -1,70 +1,50 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
+
+import { useForm } from '../hooks/useForm';
 
 import "./CarForm.css";
 
-const getInitialCarForm = () => ({
-  make: '', model: '', year: 1900, color: '', price: 0,
-});
-
 export const CarForm = (props) => {
 
-  const [ carForm, setCarForm ] = useState(getInitialCarForm() /* initial value of the state */);
-
-  const change = e => {
-
-    setCarForm({
-      // name: carForm.name,
-      // hexcode: carForm.hexcode,
-      ...carForm, // copy the properties from the original carForm into the new one
-      // computed property
-      [ e.target.name ]: e.target.type === 'number'
-        ? parseInt(e.target.value, 10) : e.target.value
-    });
-
-  };
+  const [ carForm, change, resetCarForm ] = useForm({
+    make: '', model: '', year: 1900, color: '', price: 0,
+  });
 
   const submitCar = () => {
-
-    // invoked the addCar function passing it the carForm
     props.onSubmitCar({ ...carForm });
-
-    // sets the form back to blank
-    setCarForm(getInitialCarForm());
-
+    resetCarForm();
   };
-
 
   return (
     <form>
-
       <label>
         Make:
-        <input type="text" name="make" value={carForm.make} onChange={change} />
+        <input type="text" name="make"
+          value={carForm.make} onChange={change} />
       </label>
-
       <label>
         Model:
-        <input type="text" name="model" value={carForm.model} onChange={change} />
+        <input type="text" name="model"
+          value={carForm.model} onChange={change} />
       </label>
-
       <label>
         Year:
-        <input type="number" name="year" value={carForm.year} onChange={change} />
+        <input type="number" name="year"
+          value={carForm.year} onChange={change} />
       </label>
-
       <label>
         Color:
-        <input type="text" name="color" value={carForm.color} onChange={change} />
+        <input type="text" name="color"
+          value={carForm.color} onChange={change} />
       </label>
-
       <label>
         Price:
-        <input type="number" name="price" value={carForm.price} onChange={change} />
+        <input type="number" name="price"
+          value={carForm.price} onChange={change} />
       </label>
-
-      <button type="button" onClick={submitCar}>{props.buttonText}</button>
-
+      <button type="button" onClick={submitCar}>
+        {props.buttonText}
+      </button>
     </form>
   );
 

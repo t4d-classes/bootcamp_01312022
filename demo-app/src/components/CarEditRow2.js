@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 import { carPropType } from '../propTypes/car';
+import { useForm } from '../hooks/useForm';
 
 const getEditControlId = (cols, field) => {
   return cols.find(col => {
@@ -17,23 +17,13 @@ export const CarEditRow = ({
   onSaveCar,
 }) => {
 
-  const [ carForm, setCarForm ] = useState({
+  const [ carForm, change ] = useForm({
     make: car.make,
     model: car.model,
     year: car.year,
     color: car.color,
     price: car.price,
   });
-
-  const change = e => {
-
-    setCarForm({
-      ...carForm,
-      [ e.target.name ]: e.target.type === 'number'
-        ? parseInt(e.target.value, 10) : e.target.value
-    });
-
-  };
 
   const saveCar = () => {
     onSaveCar({
@@ -42,23 +32,41 @@ export const CarEditRow = ({
     });
   };  
 
-
   return (
     <tr>
       <td>{car.id}</td>
-      <td><input type="text" name="make" id={getEditControlId(cols, 'make')}
-        value={carForm.make} onChange={change} /></td>
-      <td><input type="text" name="model" id={getEditControlId(cols, 'model')}
-        value={carForm.model} onChange={change} /></td>
-      <td><input type="number" name="year" id={getEditControlId(cols, 'year')}
-        value={carForm.year} onChange={change} /></td>
-      <td><input type="text" name="color" id={getEditControlId(cols, 'color')}
-        value={carForm.color} onChange={change} /></td>
-      <td><input type="number" name="price" id={getEditControlId(cols, 'price')}
-        value={carForm.price} onChange={change} /></td>
       <td>
-        <button type="button" onClick={saveCar}>Save</button>
-        <button type="button" onClick={cancelCar}>Cancel</button>
+        <input type="text" name="make"
+          id={getEditControlId(cols, 'make')}
+          value={carForm.make} onChange={change} />
+      </td>
+      <td>
+        <input type="text" name="model"
+          id={getEditControlId(cols, 'model')}
+          value={carForm.model} onChange={change} />
+      </td>
+      <td>
+        <input type="number" name="year"
+          id={getEditControlId(cols, 'year')}
+          value={carForm.year} onChange={change} />
+      </td>
+      <td>
+        <input type="text" name="color"
+          id={getEditControlId(cols, 'color')}
+          value={carForm.color} onChange={change} />
+      </td>
+      <td>
+        <input type="number" name="price"
+          id={getEditControlId(cols, 'price')}
+          value={carForm.price} onChange={change} />
+      </td>
+      <td>
+        <button type="button" onClick={saveCar}>
+          Save
+        </button>
+        <button type="button" onClick={cancelCar}>
+          Cancel
+        </button>
       </td>
     </tr>    
   );
