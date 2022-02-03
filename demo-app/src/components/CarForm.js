@@ -34,8 +34,6 @@ export const CarForm = (props) => {
 
   };
 
-  console.log(carForm);
-
 
   return (
     <form>

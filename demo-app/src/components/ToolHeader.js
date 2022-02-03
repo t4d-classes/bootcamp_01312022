@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 
 export const ToolHeader = props => {
   return (
@@ -7,3 +7,11 @@ export const ToolHeader = props => {
     </header>    
   );
 }
+
+ToolHeader.defaultProps = {
+  headerText: 'The Tool',
+};
+
+ToolHeader.propTypes = {
+  headerText: PropTypes.string.isRequired,
+};

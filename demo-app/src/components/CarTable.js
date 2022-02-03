@@ -1,20 +1,18 @@
 import PropTypes from 'prop-types';
-import { useRef, useMemo } from 'react';
 
 import { carsPropType } from '../propTypes/car';
 import { SortColHeader } from './SortColHeader';
 import { CarViewRow } from './CarViewRow';
 import { CarEditRow } from './CarEditRow';
 
-const getCols = (idSuffix) => ([
+const cols = [
   { field: 'id', label: 'Id' },
-  { field: 'make', label: 'Make', editControlId: `edit-make-input-${idSuffix}` },
-  { field: 'model', label: 'Model', editControlId: `edit-model-input-${idSuffix}` },
-  { field: 'year', label: 'Year', editControlId: `edit-year-input-${idSuffix}` },
-  { field: 'color', label: 'Color', editControlId: `edit-color-input-${idSuffix}` },
-  { field: 'price', label: 'Price', editControlId: `edit-price-input-${idSuffix}` },
-]);
-
+  { field: 'make', label: 'Make' },
+  { field: 'model', label: 'Model' },
+  { field: 'year', label: 'Year' },
+  { field: 'color', label: 'Color' },
+  { field: 'price', label: 'Price' },
+];
 
 export const CarTable = ({
   cars, editCarId, carsSort,
@@ -30,9 +28,8 @@ export const CarTable = ({
       <table>
         <thead>
           <tr>
-            {getCols().map( (col, i) => <SortColHeader
-              key={i} col={col}
-              sortInfo={carsSort} onSort={sortCars} />)}
+            {cols.map( (col, i) => <SortColHeader key={i}
+              col={col} sortInfo={carsSort} onSort={sortCars} />)}
             <th>Actions</th>
           </tr>
         </thead>
@@ -64,5 +61,8 @@ CarTable.propTypes = {
     direction: PropTypes.string.isRequired,
   }).isRequired,
   onSortCars: PropTypes.func.isRequired,
+  onEditCar: PropTypes.func.isRequired,
   onDeleteCar: PropTypes.func.isRequired,
+  onSaveCar: PropTypes.func.isRequired,
+  onCancelCar: PropTypes.func.isRequired,
 };

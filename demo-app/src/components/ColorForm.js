@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import "./ColorForm.css";
@@ -54,8 +55,11 @@ export const ColorForm = (props) => {
 
 };
 
+ColorForm.defaultProps = {
+  buttonText: 'Submit Color',
+};
 
-// <label htmlFor="hexcode-input">
-// Hexcode:
-// </label>
-// <input type="text" id="hexcode-input" />
+ColorForm.propTypes = {
+  buttonText: PropTypes.string.isRequired,
+  onSubmitColor: PropTypes.func.isRequired,
+};

@@ -13,6 +13,8 @@ const getEditControlId = (cols, field) => {
 export const CarEditRow = ({
   car,
   cols,
+  onCancelCar: cancelCar,
+  onSaveCar,
 }) => {
 
   const [ carForm, setCarForm ] = useState({
@@ -33,6 +35,13 @@ export const CarEditRow = ({
 
   };
 
+  const saveCar = () => {
+    onSaveCar({
+      ...carForm,
+      id: car.id,
+    });
+  };  
+
 
   return (
     <tr>
@@ -48,8 +57,8 @@ export const CarEditRow = ({
       <td><input type="number" name="price" id={getEditControlId(cols, 'price')}
         value={carForm.price} onChange={change} /></td>
       <td>
-        <button type="button">Save</button>
-        <button type="button">Cancel</button>
+        <button type="button" onClick={saveCar}>Save</button>
+        <button type="button" onClick={cancelCar}>Cancel</button>
       </td>
     </tr>    
   );
@@ -60,4 +69,6 @@ export const CarEditRow = ({
 CarEditRow.propTypes = {
   car: carPropType.isRequired,
   cols: PropTypes.array.isRequired,
+  onSaveCar: PropTypes.func.isRequired,
+  onCancelCar: PropTypes.func.isRequired,
 };

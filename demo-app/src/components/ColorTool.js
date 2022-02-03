@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { colorsPropType } from '../propTypes/color';
 import { ToolHeader } from './ToolHeader';
 import { ColorList } from './ColorList';
 import { ColorForm } from './ColorForm';
@@ -34,4 +35,12 @@ export const ColorTool = (props) => {
     </>
   );
 
+};
+
+ColorTool.defaultProps = {
+  colors: [],
+};
+
+ColorTool.propTypes = {
+  colors: colorsPropType,
 };

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import { carPropType } from '../propTypes/car';
@@ -31,7 +32,7 @@ export const CarEditRow = ({
       ...carForm,
       id: car.id,
     });
-  }
+  };
 
 
   return (
@@ -59,4 +60,6 @@ export const CarEditRow = ({
 
 CarEditRow.propTypes = {
   car: carPropType.isRequired,
+  onSaveCar: PropTypes.func.isRequired,
+  onCancelCar: PropTypes.func.isRequired,
 };

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { carsPropType } from '../propTypes/car';
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
@@ -101,4 +102,12 @@ export const CarTool = (props) => {
     </>
   );
 
+};
+
+CarTool.defaultProps = {
+  cars: [],
+};
+
+CarTool.propTypes = {
+  cars: carsPropType,
 };

@@ -21,6 +21,8 @@ export const CarTable = ({
   onSortCars: sortCars,
   onEditCar: editCar,
   onDeleteCar: deleteCar,
+  onSaveCar: saveCar,
+  onCancelCar: cancelCar,
 }) => {
 
   // will work 100%
@@ -57,7 +59,8 @@ export const CarTable = ({
         <tbody>
           {cars.map(car =>
             car.id === editCarId
-              ? <CarEditRow key={car.id} car={car} cols={cols} />
+              ? <CarEditRow key={car.id} car={car} cols={cols}
+                  onSaveCar={saveCar} onCancelCar={cancelCar} />
               : <CarViewRow key={car.id} car={car}
                   onEditCar={editCar} onDeleteCar={deleteCar} />)}
         </tbody>
@@ -81,5 +84,8 @@ CarTable.propTypes = {
     direction: PropTypes.string.isRequired,
   }).isRequired,
   onSortCars: PropTypes.func.isRequired,
+  onEditCar: PropTypes.func.isRequired,
   onDeleteCar: PropTypes.func.isRequired,
+  onSaveCar: PropTypes.func.isRequired,
+  onCancelCar: PropTypes.func.isRequired,
 };
