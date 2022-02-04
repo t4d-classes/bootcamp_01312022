@@ -1,15 +1,14 @@
-import { carsPropType } from '../propTypes/car';
-import { useCarToolStore } from '../hooks/useCarToolStore';
+import { useCarTool } from '../hooks/useCarTool';
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
 
-export const CarTool = (props) => {
+export const CarTool = () => {
 
   const {
     cars, carsSort, editCarId, addCar, saveCar,
     deleteCar, editCar, cancelCar, sortCars,
-  } = useCarToolStore([...props.cars]);
+  } = useCarTool();
 
   return (
     <>
@@ -23,12 +22,4 @@ export const CarTool = (props) => {
     </>
   );
 
-};
-
-CarTool.defaultProps = {
-  cars: [],
-};
-
-CarTool.propTypes = {
-  cars: carsPropType,
 };
