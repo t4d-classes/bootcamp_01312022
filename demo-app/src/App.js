@@ -8,6 +8,8 @@ import { ColorTool } from './components/ColorTool';
 import { CarToolStoreProvider } from './contexts/carToolStoreContext';
 import { CarTool } from './components/CarTool';
 
+import { CalcTool } from './components/CalcTool';
+
 import { Layout } from './components/Layout';
 
 export const App = () => {
@@ -22,6 +24,7 @@ export const App = () => {
         <Route path="car-tool" element={<CarToolStoreProvider>
           <CarTool />
         </CarToolStoreProvider>} />
+        <Route path="calc-tool" element={<CalcTool />} />
       </Route>
     </Routes>
   );
