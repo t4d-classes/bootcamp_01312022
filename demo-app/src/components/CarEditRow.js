@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useRef, useEffect } from 'react';
 
 import { carPropType } from '../propTypes/car';
 import { useForm } from '../hooks/useForm';
@@ -8,6 +9,16 @@ export const CarEditRow = ({
   onCancelCar: cancelCar,
   onSaveCar,
 }) => {
+
+  const makeControl = useRef();
+
+  useEffect(() => {
+
+    if (makeControl.current) {
+      makeControl.current.focus();
+    }
+
+  }, []);
 
   const [ carForm, change ] = useForm({
     make: car.make,
@@ -28,7 +39,7 @@ export const CarEditRow = ({
   return (
     <tr>
       <td>{car.id}</td>
-      <td><input type="text" name="make"
+      <td><input type="text" name="make" ref={makeControl}
         value={carForm.make} onChange={change} /></td>
       <td><input type="text" name="model"
         value={carForm.model} onChange={change} /></td>

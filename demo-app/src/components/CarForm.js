@@ -1,10 +1,25 @@
 import PropTypes from 'prop-types';
+import { forwardRef, useRef, useImperativeHandle } from 'react';
 
 import { useForm } from '../hooks/useForm';
 
 import "./CarForm.css";
 
-export const CarForm = (props) => {
+export const CarForm = forwardRef((props, ref) => {
+
+  const makeControl = useRef();
+
+  useImperativeHandle(ref, () => {
+
+    return {
+      setFocus: () => {
+        if (makeControl.current) {
+          makeControl.current.focus();
+        }
+      },
+    }
+
+  })
 
   const [ carForm, change, resetCarForm ] = useForm({
     make: '', model: '', year: 1900, color: '', price: 0,
@@ -19,7 +34,7 @@ export const CarForm = (props) => {
     <form>
       <label>
         Make:
-        <input type="text" name="make"
+        <input type="text" name="make" ref={makeControl}
           value={carForm.make} onChange={change} />
       </label>
       <label>
@@ -49,7 +64,7 @@ export const CarForm = (props) => {
   );
 
 
-};
+});
 
 CarForm.defaultProps = {
   buttonText: "Submit Car",

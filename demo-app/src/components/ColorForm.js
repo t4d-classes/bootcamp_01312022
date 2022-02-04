@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useRef, useEffect, useState } from 'react';
 
 import { useForm } from '../hooks/useForm';
 
@@ -6,20 +7,30 @@ import "./ColorForm.css";
 
 export const ColorForm = (props) => {
 
-  const [ colorForm, change, resetCarForm ] = useForm({
+  const defaultControl = useRef();
+  const [ formSubmitted, setFormSubmitted ] = useState(0);
+
+  useEffect(() => {
+    if (defaultControl.current) {
+      defaultControl.current.focus();
+    }
+  }, [formSubmitted]);
+
+  const [ colorForm, change, resetColorForm ] = useForm({
     name: '', hexcode: '',
   });
 
   const submitColor = () => {
     props.onSubmitColor({ ...colorForm });
-    resetCarForm();
+    resetColorForm();
+    setFormSubmitted(formSubmitted + 1);
   };
 
   return (
     <form>
       <label>
         Name:
-        <input type="text" name="name"
+        <input type="text" name="name" ref={defaultControl}
           value={colorForm.name} onChange={change} />
       </label>
       <label>

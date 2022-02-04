@@ -1,3 +1,5 @@
+import { useRef, useEffect } from 'react';
+
 import { useCarTool } from '../hooks/useCarTool';
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
@@ -5,10 +7,18 @@ import { CarForm } from './CarForm';
 
 export const CarTool = () => {
 
+  const defaultControl = useRef();
+
   const {
     cars, carsSort, editCarId, addCar, saveCar,
     deleteCar, editCar, cancelCar, sortCars,
-  } = useCarTool();
+  } = useCarTool();  
+
+  useEffect(() => {
+    if (defaultControl.current && editCarId === -1) {
+      defaultControl.current.setFocus();
+    }
+  }, [cars, editCarId]);
 
   return (
     <>
@@ -18,7 +28,8 @@ export const CarTool = () => {
         onEditCar={editCar} onDeleteCar={deleteCar}
         onSaveCar={saveCar} onCancelCar={cancelCar}
         onSortCars={sortCars} />
-      <CarForm buttonText="Add Car" onSubmitCar={addCar} />
+      <CarForm buttonText="Add Car" onSubmitCar={addCar}
+        ref={defaultControl} />
     </>
   );
 
