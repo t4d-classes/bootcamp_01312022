@@ -9,7 +9,7 @@ export const CalcTool = () => {
 
   // result <- state data
   // add, subtract <- actions
-  const { add, subtract, result } = useCalcTool();
+  const { add, subtract, result, history } = useCalcTool();
 
   return (
     <>
@@ -27,6 +27,11 @@ export const CalcTool = () => {
           <button type="button" onClick={() => subtract(numInput)}>-</button>
         </fieldset>
       </form>
+      <ul>
+        {history.map(entry => <li key={entry.id}>
+          {entry.opName} { entry.opValue}
+        </li>)}
+      </ul>
     </>
   );
 

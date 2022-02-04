@@ -23,6 +23,30 @@ const resultReducer = (result = 0, action) => {
 
 };
 
+const historyReducer = (history = [], action) => {
+
+  // reducers are pure functions
+  // 1. the only data used in the function comes from the parameters
+  // 2. the parameters cannot be mutated
+  // 3. the function cannot cause side-effects
+  // 4. the only output of the function is the return value
+
+  if ([ADD_ACTION, SUBTRACT_ACTION].includes(action.type)) {
+
+    return [
+      ...history,
+      {
+        opName: action.type,
+        opValue: action.payload.value,
+        id: Math.max(...history.map(entry => entry.id), 0) + 1
+      }
+    ];
+  }
+
+  return history;
+
+};
+
 
 // combine reducers produces this function here...
 // export const calcToolReducer = (state = {}, action) => {
@@ -36,6 +60,7 @@ const resultReducer = (result = 0, action) => {
 
 export const calcToolReducer = combineReducers({
   result: resultReducer,
+  history: historyReducer,
 });
 
 
