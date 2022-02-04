@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import { Home } from './components/Home';
 
@@ -8,6 +9,7 @@ import { ColorTool } from './components/ColorTool';
 import { CarToolStoreProvider } from './contexts/carToolStoreContext';
 import { CarTool } from './components/CarTool';
 
+import { calcToolStore } from './stores/calcToolStore';
 import { CalcTool } from './components/CalcTool';
 
 import { Layout } from './components/Layout';
@@ -24,7 +26,9 @@ export const App = () => {
         <Route path="car-tool" element={<CarToolStoreProvider>
           <CarTool />
         </CarToolStoreProvider>} />
-        <Route path="calc-tool" element={<CalcTool />} />
+        <Route path="calc-tool" element={<Provider store={calcToolStore}>
+          <CalcTool />
+        </Provider>} />
       </Route>
     </Routes>
   );

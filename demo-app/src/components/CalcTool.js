@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { useCalcTool } from '../hooks/useCalcTool';
 import { ToolHeader } from './ToolHeader';
 
 export const CalcTool = () => {
@@ -8,6 +9,7 @@ export const CalcTool = () => {
 
   // result <- state data
   // add, subtract <- actions
+  const { add, subtract, result } = useCalcTool();
 
   return (
     <>
