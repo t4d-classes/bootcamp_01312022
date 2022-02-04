@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { ADD_ACTION, SUBTRACT_ACTION } from '../actions/calcToolActions';
+import { ADD_ACTION, SUBTRACT_ACTION, CALC_ACTIONS } from '../actions/calcToolActions';
 
 // the result paremeter is the result property of the state object
 const resultReducer = (result = 0, action) => {
@@ -31,7 +31,7 @@ const historyReducer = (history = [], action) => {
   // 3. the function cannot cause side-effects
   // 4. the only output of the function is the return value
 
-  if ([ADD_ACTION, SUBTRACT_ACTION].includes(action.type)) {
+  if (CALC_ACTIONS.includes(action.type)) {
 
     return [
       ...history,
