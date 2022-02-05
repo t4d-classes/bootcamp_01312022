@@ -9,8 +9,8 @@ import { ColorTool } from '../colorTool/components/ColorTool';
 import { CarToolStoreProvider } from '../carTool/carToolStoreContext';
 import { CarTool } from '../carTool/components/CarTool';
 
-import { calcToolStore } from '../calcTool/calcToolStore';
-import { CalcTool } from '../calcTool/components/CalcTool';
+import { CalcToolReduxPlain } from '../calcTool/redux-plain';
+import { CalcToolReduxToolkit } from '../calcTool/redux-plain';
 
 import { Layout } from './Layout';
 
@@ -26,9 +26,8 @@ export const App = () => {
         <Route path="car-tool" element={<CarToolStoreProvider>
           <CarTool />
         </CarToolStoreProvider>} />
-        <Route path="calc-tool" element={<Provider store={calcToolStore}>
-          <CalcTool />
-        </Provider>} />
+        <Route path="calc-tool-plain" element={<CalcToolReduxPlain />} />
+        <Route path="calc-tool-redux" element={<CalcToolReduxToolkit />} />
       </Route>
     </Routes>
   );

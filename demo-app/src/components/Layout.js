@@ -16,7 +16,8 @@ export const Layout = () => {
           <li><Link to="/">Home</Link></li>
           <li><Link to="/color-tool">Color Tool</Link></li>
           <li><Link to="/car-tool">Car Tool</Link></li>
-          <li><Link to="/calc-tool">Calc Tool</Link></li>
+          <li><Link to="/calc-tool-plain">Calc Tool (Plain)</Link></li>
+          <li><Link to="/calc-tool-toolkit">Calc Tool (Toolkit)</Link></li>
         </ul>
       </nav>
 
