@@ -2,34 +2,42 @@ import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMemo } from 'react';
 
-import { createAddAction, createSubtractAction } from '../actions/calcToolActions';
+import {
+  MATH_OP_ADD,
+  MATH_OP_SUBTRACT,
+  MATH_OP_MULTIPLY,
+} from '../constants/calcToolConstants';
+
+import {
+  selectHistory,
+  selectResult,
+  selectErrorMessage,
+} from '../selectors/calcToolSelectors';
+
+import {
+  createMathAction,
+  createClearAction,
+  createDeleteHistoryEntryAction,
+  divide,
+} from '../actions/calcToolActions';
 
 
 export const useCalcToolReduxStore = () => {
 
-  const result = useSelector(state => state.result);
-  const history = useSelector(state => state.history);
-
+  const result = useSelector(selectResult);
+  const history = useSelector(selectHistory);
+  const errorMessage = useSelector(selectErrorMessage);
 
   const dispatch = useDispatch();
 
-  // using memo to only produce the actions object on the first render
   const actions = useMemo(() => bindActionCreators({
-    add: createAddAction,
-    subtract: createSubtractAction,
-  }, dispatch), [dispatch /* the reference to dispatch never changes */]);
+    add: createMathAction.bind(null, MATH_OP_ADD),
+    subtract: createMathAction.bind(null, MATH_OP_SUBTRACT),
+    multiply: createMathAction.bind(null, MATH_OP_MULTIPLY),
+    divide: divide,
+    clear: createClearAction,
+    deleteHistoryEntry: createDeleteHistoryEntryAction,
+  }, dispatch), [dispatch]);
 
-  // the actions object looks like this:
-  // {
-  //   add: value => dispatch(createAddAction(value)),
-  //   subtract: value => dispatch(createSubractAction(value)),
-  // }
-
-
-  // return { add, subtract, result };
-  return { ...actions, result, history };
-
-
-
+  return { ...actions, result, history, errorMessage };
 };
-

@@ -1,17 +1,26 @@
-// action object
-// type: string - ADD, SUBTRACT
-// payload? - whatever data is needed for the action
-//   value to ADD or SUBTRACT
+import { MATH_OP_DIVIDE } from '../constants/calcToolConstants';
 
+export const MATH_ACTION = "[CalcTool] MATH";
+export const DELETE_HISTORY_ENTRY_ACTION = "[CalcTool] DELETE_HISTORY_ENTRY";
+export const CLEAR_ACTION = "[CalcTool] CLEAR";
+export const DISPLAY_ERROR_ACTION = "[CalcTool] DISPLAY_ERROR";
 
-export const ADD_ACTION = "[CalcTool] ADD";
-export const SUBTRACT_ACTION = "[CalcTool] SUBTRACT";
+export const createMathAction = (opName, opValue) =>
+  ({ type: MATH_ACTION, payload: { opName, opValue } });
 
-export const CALC_ACTIONS = [ADD_ACTION, SUBTRACT_ACTION];
+export const createClearAction = () =>
+  ({ type: CLEAR_ACTION });
 
-export const createAddAction = value =>
-  ({ type: ADD_ACTION, payload: { value } });
+export const createDeleteHistoryEntryAction = entryId =>
+  ({ type: DELETE_HISTORY_ENTRY_ACTION, payload: { entryId } });
 
-export const createSubtractAction = value =>
-  ({ type: SUBTRACT_ACTION, payload: { value } });
+export const createDisplayErrorAction = errorMessage =>
+  ({ type: DISPLAY_ERROR_ACTION, payload: { errorMessage } });
 
+export const divide = value => {
+  if (value === 0) {
+    return createDisplayErrorAction("Cannot divide by zero.");
+  } else {
+    return createMathAction(MATH_OP_DIVIDE, value);
+  }
+};
