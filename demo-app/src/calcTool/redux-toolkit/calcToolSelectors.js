@@ -2,9 +2,9 @@ import { createSelector } from 'reselect';
 
 import { mathOperations } from '../calcToolConstants';
 
-export const selectHistory = state => state.history.history;
+export const selectHistory = state => state.history;
 
-export const selectErrorMessage = state => state.errorMessage.errorMessage;
+export const selectErrorMessage = state => state.errorMessage;
 
 export const selectResult = createSelector(selectHistory, history =>
   history.reduce((result, entry) =>

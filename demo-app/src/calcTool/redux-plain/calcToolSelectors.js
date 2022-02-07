@@ -9,3 +9,5 @@ export const selectErrorMessage = state => state.errorMessage;
 export const selectResult = createSelector(selectHistory, history =>
   history.reduce((result, entry) =>
     mathOperations.get(entry.opName)(result, entry.opValue), 0));
+
+

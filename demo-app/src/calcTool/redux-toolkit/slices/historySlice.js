@@ -2,21 +2,19 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const historySlice = createSlice({
   name: 'history',
-  initialState: {
-    history: [],
-  },
+  initialState: [],
   reducers: {
-    clear: (state) => {
-      state.history = [];
+    clear: () => {
+      return [];
     },
     deleteHistoryEntry: (state, action) => {
-      const entryIndex = state.history.findIndex(
+      const entryIndex = state.findIndex(
         entry => entry.id === action.payload.entryId);
-      state.history.splice(entryIndex, 1);
+      state.splice(entryIndex, 1);
     },
     math: (state, action) => {
-      state.history.push({
-        id: Math.max(...state.history.map(entry => entry.id), 0) + 1,
+      state.push({
+        id: Math.max(...state.map(entry => entry.id), 0) + 1,
         ...action.payload,
       });
     },

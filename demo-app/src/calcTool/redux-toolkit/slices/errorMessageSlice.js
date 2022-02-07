@@ -2,19 +2,17 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const errorMessageSlice = createSlice({
   name: 'errorMessage',
-  initialState: {
-    errorMessage: ''
-  },
+  initialState: '',
   reducers: {
-    displayError: (state, action) => {
-      state.errorMessage = action.payload.errorMessage;
+    displayError: (_, action) => {
+      return action.payload.errorMessage;
     },
-    extraReducers: (builder) => {
-      builder
-        .addDefaultCase((state) => {
-          state.errorMessage = '';
-        })    
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addDefaultCase(() => {
+        return '';
+      })    
   },
 });
 
