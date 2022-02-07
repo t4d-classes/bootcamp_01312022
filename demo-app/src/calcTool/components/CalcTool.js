@@ -1,15 +1,17 @@
+import PropTypes from 'prop-types';
+
 import { useCalcTool } from '../hooks/useCalcTool';
 
 import { ToolHeader } from '../../shared/components';
 import { CalcForm } from './CalcForm';
 import { HistoryList } from './HistoryList';
 
-export const CalcTool = () => {
+export const CalcTool = ({ kindOfStore }) => {
 
   const {
     add, subtract, multiply, divide,
     clear, deleteHistoryEntry,
-    result, history, errorMessage } = useCalcTool();
+    result, history, errorMessage } = useCalcTool(kindOfStore);
 
   return (
     <>
@@ -30,3 +32,11 @@ export const CalcTool = () => {
 
 
 }
+
+CalcTool.defaultProps = {
+  kindOfStore: 'plain',
+};
+
+CalcTool.propTypes = {
+  kindOfStore: PropTypes.string.isRequired,
+};

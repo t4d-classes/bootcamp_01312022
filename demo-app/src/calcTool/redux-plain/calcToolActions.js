@@ -1,4 +1,4 @@
-import { MATH_OP_DIVIDE } from './calcToolConstants';
+import { MATH_OP_DIVIDE } from '../calcToolConstants';
 
 export const MATH_ACTION = "[CalcTool] MATH";
 export const DELETE_HISTORY_ENTRY_ACTION = "[CalcTool] DELETE_HISTORY_ENTRY";

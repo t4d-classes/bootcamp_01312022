@@ -7,7 +7,7 @@ import { CalcTool } from '../components/CalcTool';
 export const CalcToolReduxToolkit = () => {
   return (
     <Provider store={calcToolStore}>
-      <CalcTool />
+      <CalcTool kindOfStore="toolkit" />
     </Provider>
   );
 };

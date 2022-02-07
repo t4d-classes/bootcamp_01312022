@@ -7,10 +7,15 @@ export const CalcForm = memo(({
   onSubtract: subtract,
   onMultiply: multiply,
   onDivide: divide,
-  onClear: clear,
+  onClear,
 }) => {
 
   const [ numInput, setNumInput ] = useState(0);
+
+  const clear = () => {
+    setNumInput(0);
+    onClear();
+  };
 
   return (
     <form>

@@ -8,7 +8,7 @@ export const CalcToolReduxPlain = () => {
 
   return (
     <Provider store={calcToolStore}>
-      <CalcTool />
+      <CalcTool kindOfStore="plain" />
     </Provider>
   );
 };

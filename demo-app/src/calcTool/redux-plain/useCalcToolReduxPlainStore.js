@@ -12,17 +12,17 @@ import {
   selectHistory,
   selectResult,
   selectErrorMessage,
-} from '../calcToolSelectors';
+} from './calcToolSelectors';
 
 import {
   createMathAction,
   createClearAction,
   createDeleteHistoryEntryAction,
   divide,
-} from '../calcToolActions';
+} from './calcToolActions';
 
 
-export const useCalcToolReduxStore = () => {
+export const useCalcToolReduxPlainStore = () => {
 
   const result = useSelector(selectResult);
   const history = useSelector(selectHistory);

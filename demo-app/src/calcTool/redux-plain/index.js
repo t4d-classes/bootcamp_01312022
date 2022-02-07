@@ -1,1 +1,1 @@
-export { CalcToolPlainRedux } from './CalcToolPlanRedux';
+export { CalcToolReduxPlain } from './CalcToolReduxPlain';

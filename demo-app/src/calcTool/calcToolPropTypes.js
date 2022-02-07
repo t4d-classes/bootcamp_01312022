@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { mathOperations } from './calcToolSelectors';
+import { mathOperations } from './calcToolConstants';
 
 export const historyEntryPropType = PropTypes.shape({
   id: PropTypes.number.isRequired,
