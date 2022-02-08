@@ -198,7 +198,7 @@
     
     </script> -->
 
-    <script>
+    <!-- <script>
     
       const xhr = new XMLHttpRequest();
 
@@ -218,6 +218,26 @@
       // as described below:
 
       myFetch('http://localhost:3060/cars').then(cars => console.log(cars));
+    
+    </script> -->
+    <script>
+         
+      const allCars = () => {
+        return fetch('http://localhost:3060/cars')
+          .then(res => res.json());
+      };
+      
+      /*
+      const allCars = async () => {
+        const res = await fetch('http://localhost:3060/cars');
+        const cars = await res.json();
+        return cars;
+      };
+      */
+
+      allCars().then(cars => console.log(cars)).catch(err => console.log(err));
+    
+    
     
     </script>
   </body>
