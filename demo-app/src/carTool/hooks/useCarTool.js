@@ -1,6 +1,6 @@
-import { useCarToolStoreContext } from '../carToolStoreContext';
-
+// import { useCarToolStoreContext } from '../carToolStoreContext';
+import { useCarToolReduxSyncStore } from '../useCarToolReduxSyncStore';
 
 export const useCarTool = () => {
-  return useCarToolStoreContext();
+  return useCarToolReduxSyncStore();
 };
