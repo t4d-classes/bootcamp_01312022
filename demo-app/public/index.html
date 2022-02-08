@@ -72,7 +72,7 @@
       // console.dir(inner);
 
     </script> -->
-    <script>
+    <!-- <script>
     
       // const delay = () => Math.random() * 1000 + 500;
 
@@ -105,16 +105,37 @@
         console.log('all done');
       }
 
+      // const/let to declare a variable outside of a function it is known as a "script"
+      let counter = 0;
+
+      // var will declare the variable as global, so you could access it as `window.counter`
+      // var counter = 0;
+
+      counter++;
       setTimeout(() => {
         console.log('a');
+        counter--;
+        if (counter === 0) {
+          allDone();
+        }
       }, delay());
 
+      counter++;
       setTimeout(() => {
         console.log('b');
+        counter--;
+        if (counter === 0) {
+          allDone();
+        }
       }, delay());
 
+      counter++;
       setTimeout(() => {
         console.log('c');
+        counter--;
+        if (counter === 0) {
+          allDone();
+        }
       }, delay());
 
       // Rules
@@ -126,6 +147,78 @@
 
 
 
+    </script> -->
+
+    <!-- <script>
+
+      const delay = () => Math.random() * 1000 + 500;
+
+      class Promise {
+      
+        constructor(fn) {
+
+          this._resolveFns = [];
+          this._rejectFns = [];
+
+          const resolveFn = result => {
+            this._resolveFns.forEach(resFn => resFn(result));
+          };
+          const rejectFn = result => {
+            this._rejectFns.forEach(rejFn => rejFn(result));
+          };
+
+          fn(resolveFn, rejectFn);
+        }
+
+        then(fn) {
+          this._resolveFns.push(fn);
+        }
+
+        catch(fn) {
+          this._rejectFns.push(fn);
+        }
+      
+      }
+    
+      const p = new Promise((resolve, reject) => {
+      
+        setTimeout(() => {
+
+          resolve('a');
+
+        }, delay());
+
+      });
+
+      p.then(result => {
+        console.log(result);
+      });
+
+      console.log('made it here');
+    
+    </script> -->
+
+    <script>
+    
+      const xhr = new XMLHttpRequest();
+
+      xhr.addEventListener('readystatechange', () => {
+      
+        if (xhr.status === 200 && xhr.readyState === 4) {
+          console.log(JSON.parse(xhr.responseText));
+        }
+      
+      });
+
+      xhr.open('GET', 'http://localhost:3060/cars');
+      xhr.send();
+
+
+      // implement the following `myFetch` function so that it works exactly
+      // as described below:
+
+      myFetch('http://localhost:3060/cars').then(cars => console.log(cars));
+    
     </script>
   </body>
 </html>

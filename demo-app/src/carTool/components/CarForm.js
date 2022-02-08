@@ -5,8 +5,6 @@ import { useForm } from '../../shared/hooks/useForm';
 
 import "./CarForm.css";
 
-
-
 export const CarForm = forwardRef((props, ref) => {
 
   const makeControl = useRef();
