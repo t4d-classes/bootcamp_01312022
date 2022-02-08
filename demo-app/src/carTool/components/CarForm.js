@@ -5,6 +5,8 @@ import { useForm } from '../../shared/hooks/useForm';
 
 import "./CarForm.css";
 
+
+
 export const CarForm = forwardRef((props, ref) => {
 
   const makeControl = useRef();
@@ -29,6 +31,8 @@ export const CarForm = forwardRef((props, ref) => {
     props.onSubmitCar({ ...carForm });
     resetCarForm();
   };
+
+  console.dir(submitCar);
 
   return (
     <form>
@@ -74,3 +78,12 @@ CarForm.propTypes = {
   buttonText: PropTypes.string.isRequired,
   onSubmitCar: PropTypes.func.isRequired,
 };
+
+
+// function bindMe(fn, valueOfThis, ...outerArgs) {
+
+//   return function(...innerArgs) {
+//     fn.call(valueOfThis, ...outerArgs, ...innerArgs);
+//   };
+
+// }
