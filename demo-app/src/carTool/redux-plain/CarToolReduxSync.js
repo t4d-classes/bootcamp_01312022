@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 
 import { carToolStore } from './carToolStore';
-import { CarTool } from './components/CarTool';
+import { CarTool } from '../components/CarTool';
 
 
 export const CarToolReduxSync = () => {
