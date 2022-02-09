@@ -5,7 +5,8 @@ import { Home } from './Home';
 import { ColorToolStoreProvider } from '../colorTool/colorToolStoreContext';
 import { ColorTool } from '../colorTool/components/ColorTool';
 
-import { CarToolReduxSync } from '../carTool/CarToolReduxSync';
+import { CarToolReduxPlainSync } from '../carTool/redux-plain-sync/CarToolReduxPlainSync';
+import { CarToolReduxPlainAsync } from '../carTool/redux-plain-async/CarToolReduxPlainAsync';
 
 import { CalcToolReduxPlain } from '../calcTool/redux-plain';
 import { CalcToolReduxToolkit } from '../calcTool/redux-toolkit';
@@ -21,7 +22,8 @@ export const App = () => {
         <Route path="color-tool" element={<ColorToolStoreProvider>
           <ColorTool />
         </ColorToolStoreProvider>} />
-        <Route path="car-tool" element={<CarToolReduxSync />} />
+        <Route path="car-tool-plain-sync" element={<CarToolReduxPlainSync />} />
+        <Route path="car-tool-plain-async" element={<CarToolReduxPlainAsync />} />
         <Route path="calc-tool-plain" element={<CalcToolReduxPlain />} />
         <Route path="calc-tool-toolkit" element={<CalcToolReduxToolkit />} />
       </Route>

@@ -1,14 +1,14 @@
 import { Provider } from 'react-redux';
 
 import { carToolStore } from './carToolStore';
-import { CarTool } from './components/CarTool';
+import { CarTool } from '../components/CarTool';
 
 
-export const CarToolReduxSync = () => {
+export const CarToolReduxPlainSync = () => {
 
   return (
     <Provider store={carToolStore}>
-      <CarTool />
+      <CarTool kindOfStore="plain-sync" />
     </Provider>
   );
 };

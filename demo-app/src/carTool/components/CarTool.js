@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useRef, useEffect } from 'react';
 
 import { useCarTool } from '../hooks/useCarTool';
@@ -5,14 +6,14 @@ import { ToolHeader } from '../../shared/components';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
 
-export const CarTool = () => {
+export const CarTool = ({ kindOfStore }) => {
 
   const defaultControl = useRef();
 
   const {
     cars, carsSort, editCarId, addCar, saveCar,
     deleteCar, editCar, cancelCar, sortCars,
-  } = useCarTool();  
+  } = useCarTool(kindOfStore);  
 
   useEffect(() => {
     if (defaultControl.current && editCarId === -1) {
@@ -33,4 +34,12 @@ export const CarTool = () => {
     </>
   );
 
+};
+
+CarTool.defaultProps = {
+  kindOfStore: 'plain-sync',
+};
+
+CarTool.propTypes = {
+  kindOfStore: PropTypes.string.isRequired,
 };

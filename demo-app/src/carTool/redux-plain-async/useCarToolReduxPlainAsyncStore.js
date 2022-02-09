@@ -19,7 +19,7 @@ import {
 } from './carToolActions';
 
 
-export const useCarToolReduxSyncStore = () => {
+export const useCarToolReduxPlainAsyncStore = () => {
 
   const cars = useSelector(selectSortedCars);
   const carsSort = useSelector(selectCarsSort);
