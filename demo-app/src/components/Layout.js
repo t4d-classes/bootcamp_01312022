@@ -17,7 +17,6 @@ export const Layout = () => {
           <li><Link to="/color-tool">Color Tool</Link></li>
           <li><Link to="/car-tool-plain-sync">Car Tool Sync (Plain)</Link></li>
           <li><Link to="/car-tool-plain-async">Car Tool Async (Plain)</Link></li>
-          <li><Link to="/car-tool-toolkit-async">Car Tool Async (Toolkit)</Link></li>
           <li><Link to="/calc-tool-plain">Calc Tool (Plain)</Link></li>
           <li><Link to="/calc-tool-toolkit">Calc Tool (Toolkit)</Link></li>
         </ul>
