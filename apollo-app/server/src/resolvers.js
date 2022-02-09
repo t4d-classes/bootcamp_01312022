@@ -19,6 +19,11 @@ export const resolvers = {
         { id: 2, name: 'green', hexcode: '00ff00' },
       ];
     },
+    async book(_, args) {
+      const res = await fetch('http://localhost:5050/books/' + args.id);
+      const book = await res.json();
+      return book;
+    },
     async books() {
       const res = await fetch('http://localhost:5050/books');
       return await res.json();

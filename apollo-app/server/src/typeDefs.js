@@ -6,6 +6,7 @@ export const typeDefs = gql`
     age: Int
     color(id: ID): Color
     colors: [Color]
+    book(id: ID): Book
     books: [Book]
   }
 

@@ -1,11 +1,18 @@
 import { useQuery, gql } from "@apollo/client";
 
+import { BookTable } from './components/BookTable';
+
 const APP_QUERY = gql`
   query App {
-    colors {
+    allColors: colors {
       id
-      upperCaseName
+      name: upperCaseName
       hexcode
+    }
+    books {
+      id
+      title
+      price
     }
   }
 `;
@@ -19,10 +26,11 @@ function App() {
   return (
     <>
       <ul>
-        {data.colors.map(color => <li key={color.id}>
-          {color.upperCaseName} {color.hexcode}
+        {data.allColors.map(color => <li key={color.id}>
+          {color.name} {color.hexcode}
         </li>)}
       </ul>
+      <BookTable books={data.books} />
     </>
   );
 }
