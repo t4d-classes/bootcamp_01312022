@@ -2,7 +2,11 @@ import { useQuery, gql } from "@apollo/client";
 
 const APP_QUERY = gql`
   query App {
-    message
+    colors {
+      id
+      upperCaseName
+      hexcode
+    }
   }
 `;
 
@@ -13,7 +17,13 @@ function App() {
   if (error) return <p>Error :(</p>;
 
   return (
-    <div>{data.message}</div>
+    <>
+      <ul>
+        {data.colors.map(color => <li key={color.id}>
+          {color.upperCaseName} {color.hexcode}
+        </li>)}
+      </ul>
+    </>
   );
 }
 

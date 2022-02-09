@@ -18,6 +18,19 @@ export const resolvers = {
         { "id": 1, name: 'red', hexcode: 'ff0000' },
         { id: 2, name: 'green', hexcode: '00ff00' },
       ];
-    }
+    },
+    async books() {
+      const res = await fetch('http://localhost:5050/books');
+      return await res.json();
+    },
+  },
+  Color: {
+    // default resolver
+    // id(color) {
+    //   return color.id;
+    // },
+    upperCaseName(color) {
+      return color.name.toUpperCase();
+    },
   },
 };
