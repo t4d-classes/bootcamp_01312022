@@ -12,6 +12,8 @@ export const typeDefs = gql`
 
   type Mutation {
     addColor(color: NewColor): Color
+    appendBook(book: NewBook): Book
+    removeBook(bookId: ID): Book
   }
 
   type Color {
@@ -34,5 +36,14 @@ export const typeDefs = gql`
     category: String
     price: Float
     quantity: Int
-  }  
+  } 
+
+  input NewBook {
+    isbn: String
+    title: String
+    authorId: ID
+    category: String
+    price: Float
+    quantity: Int
+  }    
 `;

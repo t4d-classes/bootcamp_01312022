@@ -40,6 +40,33 @@ export const resolvers = {
       );
 
       return await res.json();
+    },
+    async appendBook(_, { book }, { restUrl }) {
+
+      const res = await fetch(
+        `${restUrl}/books`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(book),
+        }
+      );
+
+      return await res.json();
+    },
+    async removeBook(_, { bookId }, { restUrl }) {
+
+      const res = await fetch(`${restUrl}/books/${encodeURIComponent(bookId)}`);
+      const book = await res.json();
+
+      await fetch(
+        `${restUrl}/books/${encodeURIComponent(bookId)}`,
+        {
+          method: 'DELETE',
+        }
+      );
+
+      return book;
     }
   },
   Color: {
