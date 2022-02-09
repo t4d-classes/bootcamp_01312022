@@ -220,7 +220,7 @@
       myFetch('http://localhost:3060/cars').then(cars => console.log(cars));
     
     </script> -->
-    <script>
+    <!-- <script>
          
       const allCars = () => {
         return fetch('http://localhost:3060/cars')
@@ -239,6 +239,83 @@
     
     
     
-    </script>
+    </script> -->
+    <!-- <script>
+
+      const delay = () => Math.random() * 1000 + 500;
+      const fn = r => { console.log(r); return r; };
+    
+      const taskA = () => new Promise(resolve => setTimeout(() => resolve('a'), delay()));
+      const taskB = () => new Promise((resolve, reject) => setTimeout(() => reject('b'), delay()));
+      const taskC = () => new Promise(resolve => setTimeout(() => resolve('c'), delay()));
+
+      Promise.all([
+        taskA().then(fn),
+        taskB().then(fn),
+        taskC().then(fn),
+      ]).then(results => {
+        console.log(results);
+        console.log('all done');
+      }).catch(result => {
+        console.log('failed: ', result);
+      });
+    
+    
+    </script> -->
+    <!-- <script>
+    
+      'use strict';
+
+      // call-site this
+      
+      function doIt() {
+        console.log(this);
+
+        // const that = this;
+
+        // lexical this, NOT call-site this
+        const inner = () => {
+          console.log(this); // what is this "that" going to be?
+        } 
+
+        inner();       
+      }
+
+      // doIt();
+
+      // window.doIt();
+
+      const o = {
+        id: 2,
+        doIt: doIt,
+      };
+
+      o.doIt();
+
+      // console.log(window.doIt === o.doIt);
+      
+
+      /*
+      Array.prototype.map = function(transformFn) {
+
+        console.log('our hacked up version');
+
+        const newArr = [];
+
+        for (let x=0; x< this.length; x++) {
+          newArr.push(transformFn(this[x], x, this));
+        }
+
+        return newArr;
+      }
+
+      const nums = [1,2,3,4,5];
+
+      console.log(nums.map(x => x * 2));
+      */
+    
+    
+    
+    </script> -->
   </body>
 </html>
