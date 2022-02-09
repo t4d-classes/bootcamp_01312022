@@ -13,11 +13,9 @@ export const resolvers = {
       const color = await res.json();
       return color;
     },
-    colors() {
-      return [
-        { "id": 1, name: 'red', hexcode: 'ff0000' },
-        { id: 2, name: 'green', hexcode: '00ff00' },
-      ];
+    async colors() {
+      const res = await fetch('http://localhost:5050/colors');
+      return await res.json();
     },
     async book(_, args) {
       const res = await fetch('http://localhost:5050/books/' + args.id);
@@ -28,6 +26,21 @@ export const resolvers = {
       const res = await fetch('http://localhost:5050/books');
       return await res.json();
     },
+  },
+  Mutation: {
+    async addColor(_, { color }, { restUrl }) {
+
+      const res = await fetch(
+        `${restUrl}/colors`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(color),
+        }
+      );
+
+      return await res.json();
+    }
   },
   Color: {
     // default resolver
