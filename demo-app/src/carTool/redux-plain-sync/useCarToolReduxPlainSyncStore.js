@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
-import { useMemo, useEffect } from 'react';
+import { useMemo } from 'react';
 
 import {
   selectSortedCars,
@@ -9,10 +9,9 @@ import {
 } from './carToolSelectors';
 
 import {
-  refreshCars,
-  addCar,
-  saveCar,
-  deleteCar,
+  createAddCarAction,
+  createSaveCarAction,
+  createDeleteCarAction,
   createEditCarAction,
   createCancelCarAction,
   createSortCarsAction,
@@ -28,18 +27,13 @@ export const useCarToolReduxPlainSyncStore = () => {
   const dispatch = useDispatch();
 
   const actions = useMemo(() => bindActionCreators({
-    refreshCars,
-    addCar,
-    saveCar,
-    deleteCar,
+    addCar: createAddCarAction,
+    saveCar: createSaveCarAction,
+    deleteCar: createDeleteCarAction,
     editCar: createEditCarAction,
     cancelCar: createCancelCarAction,
     sortCars: createSortCarsAction,
   }, dispatch), [dispatch]);
-
-  useEffect(() => {
-    actions.refreshCars();
-  }, [actions])
 
   return { ...actions, cars, carsSort, editCarId, };
 };
