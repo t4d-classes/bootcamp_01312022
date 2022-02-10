@@ -5,12 +5,18 @@ import {
 import {
   useCarToolReduxPlainAsyncStore
 } from '../redux-plain-async/useCarToolReduxPlainAsyncStore';
+import {
+  useCarToolReduxToolkitAsyncStore
+} from '../redux-toolkit-async/useCarToolReduxToolkitAsyncStore';
 
 export const useCarTool = (kindOfStore = 'plain-sync') => {
 
   let useReduxStore;
 
   switch (kindOfStore) {
+    case 'toolkit-async':
+      useReduxStore = useCarToolReduxToolkitAsyncStore;
+      break;
     case 'plain-async':
       useReduxStore = useCarToolReduxPlainAsyncStore;
       break;
