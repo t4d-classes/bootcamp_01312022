@@ -30,8 +30,6 @@ export const CarForm = forwardRef((props, ref) => {
     resetCarForm();
   };
 
-  console.dir(submitCar);
-
   return (
     <form>
       <label>
