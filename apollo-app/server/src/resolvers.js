@@ -26,6 +26,10 @@ export const resolvers = {
       const res = await fetch('http://localhost:5050/books');
       return await res.json();
     },
+    async authors() {
+      const res = await fetch('http://localhost:5050/authors');
+      return await res.json();
+    },
   },
   Mutation: {
     async addColor(_, { color }, { restUrl }) {
@@ -78,4 +82,22 @@ export const resolvers = {
       return color.name.toUpperCase();
     },
   },
+  Author: {
+    books: (author) => {
+      const authorId = encodeURIComponent(author.id);
+      return fetch(`http://localhost:5050/books?authorId=${authorId}`)
+        .then(res => res.json());
+    },
+  },
+  Book: {
+    // default or implied resolver
+    // title: (book) => {
+    //   return book.title;
+    // },
+    author: (book) => {
+      const authorId = encodeURIComponent(book.authorId);
+      return fetch(`http://localhost:5050/authors/${authorId}`)
+        .then(res => res.json());
+    },
+  },  
 };

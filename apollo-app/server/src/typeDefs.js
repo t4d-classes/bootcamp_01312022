@@ -7,6 +7,7 @@ export const typeDefs = gql`
     color(id: ID): Color
     colors: [Color]
     book(id: ID): Book
+    authors: [Author]
     books: [Book]
   }
 
@@ -28,6 +29,14 @@ export const typeDefs = gql`
     hexcode: String
   }
 
+  type Author {
+    id: ID
+    firstName: String
+    lastName: String
+    phoneNumber: String
+    books: [Book]
+  }  
+
   type Book {
     id: ID
     isbn: String
@@ -36,6 +45,7 @@ export const typeDefs = gql`
     category: String
     price: Float
     quantity: Int
+    author: Author 
   } 
 
   input NewBook {
