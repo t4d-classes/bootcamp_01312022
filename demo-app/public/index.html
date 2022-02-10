@@ -317,5 +317,197 @@
     
     
     </script> -->
+    <script>
+
+      const parent = {
+        name: 'parent',
+        amt: 2000,
+      };
+
+      const child = Object.create(parent);
+
+      child.name = "child";
+
+      console.log(child.amt); // 2000
+
+      parent.amt = 3000;
+
+      console.log(child.amt); // 3000
+
+      child.amt = 500;
+
+      console.log(child.amt);
+
+      console.log(child);
+
+      delete child.amt;
+
+      console.log(child);
+
+      console.log(child.amt);
+
+
+
+    </script>
+
+    <script>
+
+      class Person {
+
+        constructor(firstName, lastName) {
+          this.firstName = firstName;
+          this.lastName = lastName;
+        }
+
+        getFullName() {
+          return this.firstName + ' ' + this.lastName;
+        }
+
+      }
+
+      const person1 = new Person('Bob', 'Smith');
+      console.log(person1.getFullName());
+
+      console.log(person1);
+
+      const person2 = new Person('Jane', 'Thomas');
+      console.log(person2.getFullName());
+
+      console.log(person2);
+
+      console.log(person1.getFullName === person2.getFullName);
+
+
+      function Person2(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+      }
+
+      Person2.prototype.getFullName = function() {
+        return this.firstName + ' ' + this.lastName;
+      };
+
+      const person5 = new Person2('Sarah', 'Gallie');
+      console.log(person5.getFullName());
+
+      console.log(person5);
+
+      // const parent = {
+      //   getFullName() {
+      //     return this.firstName + ' ' + this.lastName;
+      //   }
+      // };
+
+      // const person3 = Object.create(parent);
+      // person3.firstName = "Sally";
+      // person3.lastName = "Smith";
+      // console.log(person3);
+      // console.log(person3.getFullName());  
+
+      // const person4 = Object.create(parent);
+      // person4.firstName = "Srilakshmi";
+      // person4.lastName = "Movva";
+      // console.log(person4);
+      // console.log(person4.getFullName());  
+
+      // console.log(person3.getFullName === person4.getFullName);
+
+
+
+    </script>
+
+    <script>
+
+      class Person {
+
+        constructor(firstName, lastName) {
+          this.firstName = firstName;
+          this.lastName = lastName;
+        }
+
+        getFullName() {
+          return this.firstName + ' ' + this.lastName;
+        }
+
+      }
+
+      class Student extends Person {
+
+        constructor(studentId, firstName, lastName) {
+          super(firstName, lastName);
+          this.studentId = studentId;
+        }
+
+        getRecordInfo() {
+          return `${this.studentId} ${this.lastName}, ${this.firstName}`;
+        }
+
+      }
+
+      const student1 = new Student(1, "Kelly", "Thompkins");
+
+      console.log(student1);
+
+      console.log(student1.someProp);
+
+
+
+
+    </script> 
+
+    <script>
+
+      // const person = {
+      //   firstName: 'Sam',
+      //   lastName: 'Sulley',
+      //   getFullName() {
+      //     console.log(this.firstName + " " + this.lastName);
+      //   },
+      // };
+
+      // person.getFullName = person.getFullName.bind(person);
+
+      // setTimeout(person.getFullName, 2000)
+
+      class Person {
+
+        // creates instance properties without a constructor - ES2022
+        #firstName = 'Bob'; // private member  - ES2022
+        lastName = 'Smith'
+
+        // constructor(firstName, lastName) {
+        //   this.firstName = firstName;
+        //   this.lastName = lastName;
+
+        //   // this.printFullName = this.printFullName.bind(this);
+        // }
+
+        get firstName() {
+          return this.#firstName;
+        }
+
+        set firstName(value) {
+          this.#firstName = value;
+        }
+
+
+        // class arrow function and it does the bind for you - ES2022
+        printFullName = () => {
+          console.log(this.firstName + ' ' + this.lastName);
+        }
+
+      }
+
+      const p = new Person('Timmy', 'Tolins');
+
+      setTimeout(p.printFullName, 2000);
+
+      console.log(p.#firstName);
+
+
+    </script>    
+
+
+
   </body>
 </html>
