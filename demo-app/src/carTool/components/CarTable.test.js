@@ -33,6 +33,7 @@ describe('CarTable render', () => {
       },
     ];
 
+    jest.doMock('./SortColHeader');
     jest.doMock('./CarViewRow');
     jest.doMock('./CarEditRow');
 
